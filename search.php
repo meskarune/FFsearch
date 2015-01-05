@@ -1,41 +1,4 @@
-<?
-
-/* terraserver.de/search-0.2-11.04.2002 - http://www.terraserver.de/
-
-Copyright (C) 2002 Holger Eichert, mailto:h.eichert@gmx.de. All rights reserved.
-
-This program is free software; you can redistribute it and/or modify it under 
-the terms of the GNU General Public License as published by the Free Software 
-Foundation; either version 2 of the License, or (at your option) any later 
-version.
-
-This program is distributed in the hope that it will be useful, but WITHOUT ANY 
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
-PARTICULAR PURPOSE.  See the GNU General Public License 
-http://www.gnu.org/copyleft/gpl.html for more details.
-
-You should have received a copy of the GNU General Public License along with 
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple 
-Place - Suite 330, Boston, MA  02111-1307, USA.
-
-Abbout:
-Some people say php is not the language to do a fulltextsearch and they are 
-right ;-) but anyway: terraserver.de/search performs a realtime fulltext-search 
-over spezified directorys including subdirectorys and returns a link and an 
-extract of each file. htmlspecialchars are supported so a search for "über" 
-will return documents having "&uuml;ber" as well as documents having "über". 
-
-Changes:
-- Added some more features like 'match case' and the possibility to limit the 
-number of results.
-
-Configure:
-Comment/Uncomment your language configuration and if necessary edit the settings.
-
-Have fun... */
-
-
-
+<?php
 // English Configuration
 $my_server = "http://".getenv("SERVER_NAME").":".getenv("SERVER_PORT"); // Your Server (generally no changes needed)
 $my_root = getenv("DOCUMENT_ROOT"); // Your document root (generally no changes needed)
@@ -132,7 +95,6 @@ function search_form($HTTP_GET_VARS, $limit_hits, $default_val, $message_5, $mes
 	"</form>\n";
 	}
 
-
 // search_headline(): Ueberschrift Suchergebnisse
 function search_headline($HTTP_GET_VARS, $message_3) {
 	@$keyword=$HTTP_GET_VARS['keyword'];
@@ -140,7 +102,6 @@ function search_headline($HTTP_GET_VARS, $message_3) {
 	if($action == "SEARCH") // Volltextsuche
 		echo "<h1 class=\"result\">$message_3 '<i>".htmlentities(stripslashes($keyword))."</i>'</h1>";
 	}
-
 
 // search_error(): Auf Fehler testen und Suchfehler anzeigen
 function search_error($HTTP_GET_VARS, $min_chars, $max_chars, $message_1, $message_2, $limit_hits) {
@@ -381,7 +342,7 @@ a.ts:hover  {
 	  <table border="0" cellspacing="0" cellpadding="3" bgcolor="#FFFFFF">
 		<tr align="left" valign="top">
 		  <td>
-<?
+<?php
 // search_form(): Gibt das Suchformular aus
 search_form($HTTP_GET_VARS, $limit_hits, $default_val, $message_5, $message_6, $PHP_SELF);
 ?>
@@ -391,7 +352,7 @@ search_form($HTTP_GET_VARS, $limit_hits, $default_val, $message_5, $message_6, $
 	</td>
   </tr>
 </table>
-<?
+<?php
 // search_headline(): Ueberschrift Suchergebnisse
 search_headline($HTTP_GET_VARS, $message_3);
 // search_error(): Auf Fehler testen und Suchfehler anzeigen
